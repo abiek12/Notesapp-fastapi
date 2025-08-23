@@ -9,10 +9,12 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+# Health check endpoint
 @app.get("/health")
 def read_root():
     return {"Hello": "World"}
 
+# Routes
 @app.get('/', response_class=HTMLResponse)
 def get_all_notes(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
