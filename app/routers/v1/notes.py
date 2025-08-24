@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from ...main import templates
 
 router = APIRouter(
     prefix="/v1/notes"
@@ -7,8 +8,7 @@ router = APIRouter(
 # Get all records
 @router.get("/")
 async def get_all_notes():
-    notes = []
-    return notes
+   return 
 
 # Get individual record by id
 @router.get("/{id}")
