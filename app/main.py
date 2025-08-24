@@ -1,8 +1,7 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from .routers.v1 import notes, categories
 
 app = FastAPI()
 
@@ -15,7 +14,5 @@ def read_root():
     return {"Hello": "World"}
 
 # Routes
-@app.get('/', response_class=HTMLResponse)
-def get_all_notes(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-    
+app.include_router(notes.router, prefix="/api", tags=["notes"])
+app.include_router(categories.router, prefix="/api", tags=["categories"])
