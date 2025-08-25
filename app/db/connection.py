@@ -1,22 +1,25 @@
 from app.core.config import config
 from pymongo import MongoClient
-
+import logging
 class Database:
     client = None
     db_url = f"mongodb://{config.MONGO_USERNAME}:{config.MONGO_PASSWORD}@{config.MONGO_HOST}:{config.MONGO_PORT}/"
+    logger = logging.getLogger(__name__)
     
     def connect(self):
         if(not self.db_url):
             raise ValueError("MONGO_CONNECTION_STRING not set in environment variables.")
         self.client = MongoClient(self.db_url)
-        print("Database connected successfully!")
+        self.logger.info("Database connected successfully!")
     
     def disconnect(self):
         if self.client:
             self.client.close()
-            print("Database disconnected!")
+            self.logger.info("Database disconnected!")
             
     def get_database(self, db_name: str):
         if self.client:
             return self.client[db_name]
         raise Exception("Database client not connected.")
+    
+db = Database()

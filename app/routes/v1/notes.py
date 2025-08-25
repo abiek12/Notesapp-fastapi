@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ...main import templates
+from ...services.notes import NotesService
 
 router = APIRouter(
     prefix="/v1/notes"
@@ -8,7 +8,10 @@ router = APIRouter(
 # Get all records
 @router.get("/")
 async def get_all_notes():
-   return 
+    notes_svc = NotesService()
+    res = notes_svc.get_all_notes()
+    return res
+   
 
 # Get individual record by id
 @router.get("/{id}")
