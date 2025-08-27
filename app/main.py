@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from app.db.connection import db
 import logging
+from app.db.migrate import migrateDb
 
 # Configure root logger
 logging.basicConfig(
@@ -17,12 +18,13 @@ logging.basicConfig(
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # connect db
-    db.connect()
+    await db.connect()
+    await migrateDb()
     
     yield
     
     # Disconnect db
-    db.disconnect()
+    await db.disconnect()
 
 app = FastAPI(lifespan=lifespan)
 

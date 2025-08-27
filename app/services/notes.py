@@ -6,6 +6,6 @@ class NotesService:
         database = db.get_database()
         self.notes = database['notes']
     
-    async def get_all_notes(self, req):
+    async def get_all_notes(self,):
         notesData = self.notes.find()
         return notesEntity(list(notesData))

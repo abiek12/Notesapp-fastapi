@@ -4,16 +4,17 @@ import logging
 import os
 class Database:
     client = None
-    db_url = f"mongodb://{config.MONGO_USERNAME}:{config.MONGO_PASSWORD}@{config.MONGO_HOST}:{config.MONGO_PORT}/"
+    db_url = f"mongodb+srv://{config.MONGO_USERNAME}:{config.MONGO_PASSWORD}@{config.MONGO_HOST}/?retryWrites=true&w=majority"
+    print(db_url)
     logger = logging.getLogger(__name__)
     
-    def connect(self):
+    async def connect(self):
         if(not self.db_url):
             raise ValueError("MONGO_CONNECTION_STRING not set in environment variables.")
         self.client = MongoClient(self.db_url)
         self.logger.info("Database connected successfully!")
     
-    def disconnect(self):
+    async def disconnect(self):
         if self.client:
             self.client.close()
             self.logger.info("Database disconnected!")
