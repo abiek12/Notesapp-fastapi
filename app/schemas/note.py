@@ -7,6 +7,6 @@ def noteEntity(item) -> dict:
         "created_at": str(item["created_at"]),
         "updated_at": str(item["updated_at"])
     }
-    
+        
 def notesEntity(itmes) -> list:
     return [noteEntity(item) for item in itmes]
