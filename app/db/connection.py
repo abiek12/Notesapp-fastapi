@@ -1,6 +1,7 @@
 from app.core.config import config
 from pymongo import MongoClient
 import logging
+import os
 class Database:
     client = None
     db_url = f"mongodb://{config.MONGO_USERNAME}:{config.MONGO_PASSWORD}@{config.MONGO_HOST}:{config.MONGO_PORT}/"
@@ -17,9 +18,9 @@ class Database:
             self.client.close()
             self.logger.info("Database disconnected!")
             
-    def get_database(self, db_name: str):
+    def get_database(self):
         if self.client:
-            return self.client[db_name]
+            return self.client[os.getenv('MONGO_DB', 'my_notes_app_fastapi')]
         raise Exception("Database client not connected.")
     
 db = Database()

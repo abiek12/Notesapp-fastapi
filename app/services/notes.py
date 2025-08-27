@@ -1,5 +1,11 @@
 from app.db.connection import db
+from ..schemas.note import notesEntity
 
 class NotesService:
-    async def get_all_notes(req):
-        return None
+    def __init__(self) -> None:
+        database = db.get_database()
+        self.notes = database['notes']
+    
+    async def get_all_notes(self, req):
+        notesData = self.notes.find()
+        return notesEntity(list(notesData))
