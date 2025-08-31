@@ -21,7 +21,7 @@ class Database:
             
     def get_database(self):
         if self.client:
-            return self.client[os.getenv('MONGO_DB', 'my_notes_app_fastapi')]
+            return self.client[os.getenv('MONGO_DB', 'url_shotner')]
         raise Exception("Database client not connected.")
     
 db = Database()
