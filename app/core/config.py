@@ -9,6 +9,6 @@ class Config:
     MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD", "your_password")
     MONGO_HOST = os.environ.get("MONGO_HOST", "localhost")
     MONGO_PORT = os.environ.get("MONGO_PORT", 27017)
-    MONGO_DB = os.environ.get("MONGO_DB", "my_notes_app_fastapi")
+    MONGO_DB = os.environ.get("MONGO_DB", "url_shotner")
 
 config = Config
