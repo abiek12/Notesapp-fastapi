@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, List
 from enum import Enum
+from datetime import datetime
 
 class Roles(str, Enum):
     admin = 'admin'
@@ -17,3 +18,5 @@ class Users(BaseModel):
     gender: Optional[str] = None
     password: str
     roles: List[Roles]
+    created_at: str = str(datetime.timestamp(datetime.now()))
+    updated_at: str = str(datetime.timestamp(datetime.now()))
