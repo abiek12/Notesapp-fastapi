@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from app.routes.v1 import notes, categories
+from app.routes.v1 import index
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from app.db.connection import db
@@ -37,5 +37,4 @@ def read_root():
     return {"Hello": "World"}
 
 # Routes
-app.include_router(notes.router, prefix="/api", tags=["notes"])
-app.include_router(categories.router, prefix="/api", tags=["categories"])
+app.include_router(index.router, prefix="/api", tags=["urls"])

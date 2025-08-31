@@ -1,5 +1,5 @@
 from app.db.connection import db
-from ..schemas.note import notesEntity
+from ..schemas.urls import notesEntity
 
 class NotesService:
     def __init__(self) -> None:

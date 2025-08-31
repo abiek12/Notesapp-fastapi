@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ...services.notes import NotesService
+from ...services.urls import NotesService
 
 router = APIRouter(
     prefix="/v1/notes"
