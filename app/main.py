@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from app.routes.v1 import index
+from app.routes.v1.urls_route import router as url_router
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from app.db.connection import db
@@ -37,4 +37,4 @@ def read_root():
     return {"Hello": "World"}
 
 # Routes
-app.include_router(index.router, prefix="/api", tags=["urls"])
+app.include_router(url_router, prefix="/api", tags=["urls"])
